@@ -16,19 +16,13 @@ public class ListingService {
     ListingRepository listingRepository;
 
     @Transactional
-    public List<Listing> getActiveListings() {
-        List<Listing> result = listingRepository.getActiveListings();
-        return result;
-    }
-
-    @Transactional
-    public Listing saveListing(Listing listing) {
-        Listing result = listingRepository.saveListing(listing);
+    public List<Listing> getListings() {
+        List<Listing> result = listingRepository.get();
         return result;
     }
 
     public List<String> getActiveListingIds() {
-        List<String> result = getActiveListings()
+        List<String> result = getListings()
                 .stream()
                 .map(Listing -> Listing.getSourceId())
                 .collect(Collectors.toList());

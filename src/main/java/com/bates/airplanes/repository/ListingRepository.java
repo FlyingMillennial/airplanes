@@ -14,15 +14,24 @@ public class ListingRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Listing> getActiveListings() {
+    public List<Listing> get() {
         Query query = entityManager.createQuery("SELECT l from Listing l");
         List<Listing> result = query.getResultList();
         return result;
     }
 
-    public Listing saveListing(Listing listing) {
+    public List<Listing> save(List<Listing> listings) {
+        listings.stream().forEach(listing -> save(listing));
+        return listings;
+    }
+
+    private Listing save(Listing listing) {
         entityManager.persist(listing);
         return listing;
+    }
+
+    public void delete(List<Listing> listings) {
+        listings.stream().forEach(listing -> entityManager.remove(listing));
     }
 
 }

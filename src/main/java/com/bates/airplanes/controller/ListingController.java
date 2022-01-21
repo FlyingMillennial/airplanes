@@ -15,7 +15,7 @@ public class ListingController {
 
     @GetMapping("/fetch-listings")
     public List<Listing> getActiveListings() {
-        List<Listing> result = listingService.getActiveListings();
+        List<Listing> result = listingService.getListings();
         return result;
     }
 
