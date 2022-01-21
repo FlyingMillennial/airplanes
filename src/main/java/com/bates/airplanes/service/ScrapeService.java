@@ -62,10 +62,9 @@ public class ScrapeService {
     private List<Listing> convertIdsToListings(List<String> ids) {
         List<Listing> listings = new ArrayList<>();
         ids.stream().forEach(sourceId -> listings.add(
-            new Listing(sourceId, "TAP", LocalDate.now(),true)
+            new Listing(sourceId, "TAP", LocalDate.now())
         ));
         return listings;
     }
-
 
 }

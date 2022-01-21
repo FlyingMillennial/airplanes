@@ -21,7 +21,7 @@ public class Listing {
     //Default for Hibernate
     public Listing() {}
 
-    public Listing(String sourceId, String source, LocalDate dateScraped, Boolean currentlyActive) {
+    public Listing(String sourceId, String source, LocalDate dateScraped) {
         this.sourceId = sourceId;
         this.source = source;
         this.dateScraped = dateScraped;
