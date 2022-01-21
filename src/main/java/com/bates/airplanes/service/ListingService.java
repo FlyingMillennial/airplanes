@@ -32,9 +32,6 @@ public class ListingService {
 
     @Transactional
     public List<Listing> fetchActiveListings() {
-
-        //TODO: Figure out why it's deleting from the database and reinserting everything
-
         FetchedListings fetchedListings = fetchListings();
         saveNewWebListings(fetchedListings);
         deleteExpiredSavedListings(fetchedListings);
@@ -52,6 +49,7 @@ public class ListingService {
 
     @Transactional
     private void saveNewWebListings(FetchedListings fetchedListings) {
+        //TODO: Figure out why all listings are coming back as new
         List<Listing> newWebListings = listingCalculationService.calculateNewWebListings(fetchedListings);
         listingRepository.save(newWebListings);
     }

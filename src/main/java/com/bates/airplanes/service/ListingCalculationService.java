@@ -36,7 +36,7 @@ public class ListingCalculationService {
             String listOneListingId = listOneListing.getSourceId();
             for(int listTwoIndex = 0; listTwoIndex < listTwo.size(); listTwoIndex++) {
                 String listTwoListingId = listTwo.get(listTwoIndex).getSourceId();
-                if (listOneListingId == listTwoListingId) {
+                if (listOneListingId.equals(listTwoListingId)) {
                     listOneListingNotFoundInListTwo = false;
                     break;
                 }
