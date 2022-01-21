@@ -5,19 +5,12 @@ import com.bates.airplanes.model.Listing;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-import java.io.IOException;
-import java.net.http.HttpClient;
-import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.*;
 
 @WebMvcTest(ListingCalculationService.class)
 public class ListingCalculationServiceTest {
