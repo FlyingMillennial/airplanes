@@ -12,7 +12,7 @@ public class Listing {
     @GeneratedValue
     private Long id;
 
-    private Long sourceId;
+    private String sourceId;
 
     private String source;
 
@@ -21,7 +21,7 @@ public class Listing {
     //Default for Hibernate
     public Listing() {}
 
-    public Listing(Long sourceId, String source, LocalDate dateScraped, Boolean currentlyActive) {
+    public Listing(String sourceId, String source, LocalDate dateScraped, Boolean currentlyActive) {
         this.sourceId = sourceId;
         this.source = source;
         this.dateScraped = dateScraped;
@@ -35,11 +35,11 @@ public class Listing {
         this.id = id;
     }
 
-    public Long getSourceId() {
+    public String getSourceId() {
         return sourceId;
     }
 
-    public void setSourceId(Long sourceId) {
+    public void setSourceId(String sourceId) {
         this.sourceId = sourceId;
     }
 

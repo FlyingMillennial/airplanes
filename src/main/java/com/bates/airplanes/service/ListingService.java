@@ -27,8 +27,8 @@ public class ListingService {
         return result;
     }
 
-    public List<Long> getActiveListingIds() {
-        List<Long> result = getActiveListings()
+    public List<String> getActiveListingIds() {
+        List<String> result = getActiveListings()
                 .stream()
                 .map(Listing -> Listing.getSourceId())
                 .collect(Collectors.toList());
