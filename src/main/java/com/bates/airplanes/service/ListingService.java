@@ -21,15 +21,6 @@ public class ListingService {
     @Autowired
     ListingCalculationService listingCalculationService;
 
-    //TODO: Delete this
-    @Transactional
-    public List<Listing> getListings() {
-        List<Listing> result = listingRepository.get();
-        return result;
-    }
-
-    //----------------------------------------//
-
     @Transactional
     public List<Listing> fetchActiveListings() {
         FetchedListings fetchedListings = fetchListings();
@@ -41,6 +32,7 @@ public class ListingService {
 
     @Transactional
     private FetchedListings fetchListings() {
+        //TODO: Implement scrape service factory and configuration list so that we can fetch from various sites
         List<Listing> webListings = scrapeService.getWebListings();
         List<Listing> databaseListings = listingRepository.get();
         FetchedListings fetchedListings = new FetchedListings(webListings, databaseListings);
@@ -49,7 +41,6 @@ public class ListingService {
 
     @Transactional
     private void saveNewWebListings(FetchedListings fetchedListings) {
-        //TODO: Figure out why all listings are coming back as new
         List<Listing> newWebListings = listingCalculationService.calculateNewWebListings(fetchedListings);
         listingRepository.save(newWebListings);
     }

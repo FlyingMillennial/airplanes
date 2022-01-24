@@ -30,12 +30,14 @@ public class ListingCalculationService {
         List<Listing> listingsFromListOneNotFoundInListTwo = new ArrayList<>();
 
         //TODO: Implement binary search; this is exponential and will produce bad performance at higher volumes
+        //TODO: Implement in a way that is sensitive to Listing.source
         for(int listOneIndex = 0; listOneIndex < listOne.size(); listOneIndex++) {
             Boolean listOneListingNotFoundInListTwo = true;
             Listing listOneListing = listOne.get(listOneIndex);
             String listOneListingId = listOneListing.getSourceId();
             for(int listTwoIndex = 0; listTwoIndex < listTwo.size(); listTwoIndex++) {
                 String listTwoListingId = listTwo.get(listTwoIndex).getSourceId();
+                //TODO: We can probably just add && (listingOnceSource.equals(listingTwo.source))
                 if (listOneListingId.equals(listTwoListingId)) {
                     listOneListingNotFoundInListTwo = false;
                     break;

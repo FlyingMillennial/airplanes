@@ -22,6 +22,7 @@ public class ScrapeService {
     private final String tradeAPlaneRegex = "data-listing_id=\"(.*?)\"";
 
     public List<Listing> getWebListings() {
+        //New up httpClient here to facilitate testing
         HttpClient httpClient = HttpClient.newHttpClient();
         return getWebListings(httpClient);
     }
