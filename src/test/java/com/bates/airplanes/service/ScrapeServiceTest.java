@@ -3,8 +3,10 @@ package com.bates.airplanes.service;
 import com.bates.airplanes.model.Listing;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -14,7 +16,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.*;
 
-@WebMvcTest(ScrapeService.class)
+@ExtendWith(MockitoExtension.class)
 public class ScrapeServiceTest {
 
     ScrapeService scrapeService = new ScrapeService(

@@ -5,20 +5,17 @@ import com.bates.airplanes.model.Listing;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: There is almost certainly a way to run this without running spring...
-@WebMvcTest(ListingCalculationService.class)
+@ExtendWith(MockitoExtension.class)
 public class ListingCalculationServiceTest {
 
-    @Autowired
-    ListingCalculationService listingCalculationService;
-
+    private static ListingCalculationService listingCalculationService;
     private static FetchedListings fetchedListings;
 
     @BeforeAll
@@ -33,6 +30,7 @@ public class ListingCalculationServiceTest {
             fetchedListingsFromDatabase.add(new Listing("789", "TAP", LocalDate.now()));
 
         fetchedListings = new FetchedListings(newListingsFromWeb, fetchedListingsFromDatabase);
+        listingCalculationService = new ListingCalculationService();
     }
 
     @Test
