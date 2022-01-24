@@ -19,7 +19,7 @@ public class ScrapeServiceFactory {
                 );
                 break;
             default:
-                throw new RuntimeException(source.toString() + " is not a valid ScrapeService source.");
+                throw new RuntimeException(source + " is not a valid ScrapeService source.");
         }
 
         return service;
