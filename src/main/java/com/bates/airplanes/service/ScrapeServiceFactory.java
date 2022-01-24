@@ -18,6 +18,20 @@ public class ScrapeServiceFactory {
                     "TAP"
                 );
                 break;
+            case CONTROLLER:
+                service = new ScrapeService(
+                    "https://www.controller.com/listings/search?Category=6&Manufacturer=PIPER",
+                    "data-listing-id=\"(.*?)\"",
+                    "CONTROLLER"
+                );
+                break;
+            case BARNSTORMERS:
+                service = new ScrapeService(
+                        "https://www.barnstormers.com/category-21147-Piper.html",
+                        "data-adid=\"(.*?)\"",
+                        "BARNSTORMERS"
+                );
+                break;
             default:
                 throw new RuntimeException(source + " is not a valid ScrapeService source.");
         }
