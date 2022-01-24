@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: There is almost certainly a way to run this without running spring...
 @WebMvcTest(ListingCalculationService.class)
 public class ListingCalculationServiceTest {
 

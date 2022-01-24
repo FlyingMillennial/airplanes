@@ -4,7 +4,6 @@ import com.bates.airplanes.model.Listing;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
 import java.io.IOException;
@@ -18,8 +17,11 @@ import static org.mockito.ArgumentMatchers.*;
 @WebMvcTest(ScrapeService.class)
 public class ScrapeServiceTest {
 
-    @Autowired
-    ScrapeService scrapeService;
+    ScrapeService scrapeService = new ScrapeService(
+        "https://www.trade-a-plane.com/search?category_level1=Single+Engine+Piston&make=PIPER&s-type=aircraft&s-page_size=96&s-sort_key=price&s-sort_order=asc",
+        "data-listing_id=\"(.*?)\"",
+        "TAP"
+    );
 
     @Mock
     HttpClient httpClient;

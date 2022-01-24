@@ -2,21 +2,23 @@ package com.bates.airplanes.service;
 
 import com.bates.airplanes.model.FetchedListings;
 import com.bates.airplanes.model.Listing;
+import com.bates.airplanes.model.ScrapeSource;
 import com.bates.airplanes.repository.ListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ListingService {
 
     @Autowired
-    ListingRepository listingRepository;
+    ScrapeServiceFactory scrapeServiceFactory;
 
     @Autowired
-    ScrapeService scrapeService;
+    ListingRepository listingRepository;
 
     @Autowired
     ListingCalculationService listingCalculationService;
@@ -32,9 +34,17 @@ public class ListingService {
 
     @Transactional
     private FetchedListings fetchListings() {
-        //TODO: Implement scrape service factory and configuration list so that we can fetch from various sites
-        List<Listing> webListings = scrapeService.getWebListings();
+        // Scrape listings from the web from different sources
+        List<Listing> webListings = new ArrayList<>();
+        for (ScrapeSource source : ScrapeSource.values()) {
+            ScrapeService service = scrapeServiceFactory.getScrapeService(source);
+            List<Listing> webListingsFromCurrentSource = service.getWebListings();
+            webListings.addAll(webListingsFromCurrentSource);
+        }
+        // Fetch listings from database
         List<Listing> databaseListings = listingRepository.get();
+
+        //Create and return FetchedListings
         FetchedListings fetchedListings = new FetchedListings(webListings, databaseListings);
         return fetchedListings;
     }

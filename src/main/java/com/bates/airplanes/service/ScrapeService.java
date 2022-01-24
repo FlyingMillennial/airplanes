@@ -17,9 +17,18 @@ import java.util.stream.Collectors;
 @Service
 public class ScrapeService {
 
-    private final String tapUrl = "https://www.trade-a-plane.com/search?category_level1=Single+Engine+Piston&make=PIPER&s-type=aircraft&s-page_size=96&s-sort_key=price&s-sort_order=asc";;
+    private String sourceUrl;
+    private String sourceRegex;
+    private String sourceName;
 
-    private final String tradeAPlaneRegex = "data-listing_id=\"(.*?)\"";
+    //Needed to keep spring happy...
+    public ScrapeService() {}
+
+    public ScrapeService(String sourceUrl, String sourceRegex, String sourceName) {
+        this.sourceUrl = sourceUrl;
+        this.sourceRegex = sourceRegex;
+        this.sourceName = sourceName;
+    }
 
     public List<Listing> getWebListings() {
         //New up httpClient here to facilitate testing
@@ -35,7 +44,7 @@ public class ScrapeService {
 
     private String getWebPage(HttpClient httpClient) {
         try {
-            URI uri = URI.create(tapUrl);
+            URI uri = URI.create(sourceUrl);
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(uri)
                     .GET()
@@ -51,7 +60,7 @@ public class ScrapeService {
     }
 
     private List<String> getListingIds(String htmlFromWebListings) {
-        List<String> results = Pattern.compile(tradeAPlaneRegex)
+        List<String> results = Pattern.compile(sourceRegex)
                 .matcher(htmlFromWebListings)
                 .results()
                 .map(MatchResult -> MatchResult.group(1) )
@@ -63,7 +72,7 @@ public class ScrapeService {
     private List<Listing> convertIdsToListings(List<String> ids) {
         List<Listing> listings = new ArrayList<>();
         ids.stream().forEach(sourceId -> listings.add(
-            new Listing(sourceId, "TAP", LocalDate.now())
+            new Listing(sourceId, sourceName, LocalDate.now())
         ));
         return listings;
     }
