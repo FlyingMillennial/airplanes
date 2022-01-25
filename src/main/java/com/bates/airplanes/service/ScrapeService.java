@@ -20,7 +20,14 @@ public class ScrapeService {
 
     private String sourceUrl;
     private String sourceRegex;
+
+    public ScrapeSource getScrapeSource() {
+        return scrapeSource;
+    }
+
     private ScrapeSource scrapeSource;
+
+
 
     //Needed to keep spring happy...
     public ScrapeService() {}
