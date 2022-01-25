@@ -14,14 +14,14 @@ public class Listing {
 
     private String sourceId;
 
-    private String source;
+    private ScrapeSource source;
 
     private LocalDate dateScraped;
 
     //Default for Hibernate
     public Listing() {}
 
-    public Listing(String sourceId, String source, LocalDate dateScraped) {
+    public Listing(String sourceId, ScrapeSource source, LocalDate dateScraped) {
         this.sourceId = sourceId;
         this.source = source;
         this.dateScraped = dateScraped;
@@ -43,11 +43,9 @@ public class Listing {
         this.sourceId = sourceId;
     }
 
-    public String getSource() {
-        return source;
-    }
+    public ScrapeSource getSource() {return source;}
 
-    public void setSource(String source) {
+    public void setSource(ScrapeSource source) {
         this.source = source;
     }
 

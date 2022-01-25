@@ -2,6 +2,7 @@ package com.bates.airplanes.service;
 
 import com.bates.airplanes.model.FetchedListings;
 import com.bates.airplanes.model.Listing;
+import com.bates.airplanes.model.ScrapeSource;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,10 +35,10 @@ public class ListingCalculationService {
             Boolean listOneListingNotFoundInListTwo = true;
             Listing listOneListing = listOne.get(listOneIndex);
             String listOneListingId = listOneListing.getSourceId();
-            String listOneListingSource = listOneListing.getSource();
+            ScrapeSource listOneListingSource = listOneListing.getSource();
             for(int listTwoIndex = 0; listTwoIndex < listTwo.size(); listTwoIndex++) {
                 String listTwoListingId = listTwo.get(listTwoIndex).getSourceId();
-                String listTwoListingSource = listTwo.get(listTwoIndex).getSource();
+                ScrapeSource listTwoListingSource = listTwo.get(listTwoIndex).getSource();
                 if (listOneListingId.equals(listTwoListingId) && listOneListingSource.equals(listTwoListingSource)) {
                     listOneListingNotFoundInListTwo = false;
                     break;

@@ -1,6 +1,7 @@
 package com.bates.airplanes.service;
 
 import com.bates.airplanes.model.Listing;
+import com.bates.airplanes.model.ScrapeSource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -19,15 +20,15 @@ public class ScrapeService {
 
     private String sourceUrl;
     private String sourceRegex;
-    private String sourceName;
+    private ScrapeSource scrapeSource;
 
     //Needed to keep spring happy...
     public ScrapeService() {}
 
-    public ScrapeService(String sourceUrl, String sourceRegex, String sourceName) {
+    public ScrapeService(String sourceUrl, String sourceRegex, ScrapeSource scrapeSource) {
         this.sourceUrl = sourceUrl;
         this.sourceRegex = sourceRegex;
-        this.sourceName = sourceName;
+        this.scrapeSource = scrapeSource;
     }
 
     public List<Listing> getWebListings() {
@@ -72,7 +73,7 @@ public class ScrapeService {
     private List<Listing> convertIdsToListings(List<String> ids) {
         List<Listing> listings = new ArrayList<>();
         ids.stream().forEach(sourceId -> listings.add(
-            new Listing(sourceId, sourceName, LocalDate.now())
+            new Listing(sourceId, scrapeSource, LocalDate.now())
         ));
         return listings;
     }

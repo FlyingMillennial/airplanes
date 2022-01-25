@@ -2,8 +2,8 @@ package com.bates.airplanes.service;
 
 import com.bates.airplanes.model.FetchedListings;
 import com.bates.airplanes.model.Listing;
+import com.bates.airplanes.model.ScrapeSource;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -22,18 +22,18 @@ public class ListingCalculationServiceTest {
     public void allMatchesShouldReturnNoData() {
         //Arrange
         List<Listing> newListingsFromWeb = new ArrayList<>();
-        newListingsFromWeb.add(new Listing("123", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("456", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("789", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("012", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("345", "TAP", LocalDate.now()));
+        newListingsFromWeb.add(new Listing("123", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("456", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("789", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("012", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("345", ScrapeSource.TRADEAPLANE, LocalDate.now()));
 
         List<Listing> fetchedListingsFromDatabase = new ArrayList<>();
-        fetchedListingsFromDatabase.add(new Listing("123", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("456", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("789", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("012", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("345", "TAP", LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("123", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("456", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("789", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("012", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("345", ScrapeSource.TRADEAPLANE, LocalDate.now()));
 
         fetchedListings = new FetchedListings(newListingsFromWeb, fetchedListingsFromDatabase);
         listingCalculationService = new ListingCalculationService();
@@ -51,18 +51,18 @@ public class ListingCalculationServiceTest {
     public void noMatchesShouldReturnAllData() {
         //Arrange
         List<Listing> newListingsFromWeb = new ArrayList<>();
-        newListingsFromWeb.add(new Listing("123", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("456", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("789", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("012", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("345", "TAP", LocalDate.now()));
+        newListingsFromWeb.add(new Listing("123", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("456", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("789", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("012", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("345", ScrapeSource.TRADEAPLANE, LocalDate.now()));
 
         List<Listing> fetchedListingsFromDatabase = new ArrayList<>();
-        fetchedListingsFromDatabase.add(new Listing("987", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("654", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("321", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("098", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("765", "TAP", LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("987", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("654", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("321", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("098", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("765", ScrapeSource.TRADEAPLANE, LocalDate.now()));
 
         fetchedListings = new FetchedListings(newListingsFromWeb, fetchedListingsFromDatabase);
         listingCalculationService = new ListingCalculationService();
@@ -91,18 +91,18 @@ public class ListingCalculationServiceTest {
     public void someMatchesShouldReturnSomeData() {
         //Arrange
         List<Listing> newListingsFromWeb = new ArrayList<>();
-        newListingsFromWeb.add(new Listing("123", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("456", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("789", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("012", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("345", "TAP", LocalDate.now()));
+        newListingsFromWeb.add(new Listing("123", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("456", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("789", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("012", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("345", ScrapeSource.TRADEAPLANE, LocalDate.now()));
 
         List<Listing> fetchedListingsFromDatabase = new ArrayList<>();
-        fetchedListingsFromDatabase.add(new Listing("123", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("654", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("789", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("012", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("765", "TAP", LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("123", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("654", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("789", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("012", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("765", ScrapeSource.TRADEAPLANE, LocalDate.now()));
 
         fetchedListings = new FetchedListings(newListingsFromWeb, fetchedListingsFromDatabase);
         listingCalculationService = new ListingCalculationService();
@@ -125,16 +125,16 @@ public class ListingCalculationServiceTest {
     public void matchesFromMixedSourcesShouldNotCount() {
         //Arrange
         List<Listing> newListingsFromWeb = new ArrayList<>();
-        newListingsFromWeb.add(new Listing("123", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("456", "TAP", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("789", "CONTROLLER", LocalDate.now()));
-        newListingsFromWeb.add(new Listing("012", "CONTROLLER", LocalDate.now()));
+        newListingsFromWeb.add(new Listing("123", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("456", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("789", ScrapeSource.CONTROLLER, LocalDate.now()));
+        newListingsFromWeb.add(new Listing("012", ScrapeSource.CONTROLLER, LocalDate.now()));
 
         List<Listing> fetchedListingsFromDatabase = new ArrayList<>();
-        fetchedListingsFromDatabase.add(new Listing("123", "CONTROLLER", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("456", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("789", "TAP", LocalDate.now()));
-        fetchedListingsFromDatabase.add(new Listing("012", "CONTROLLER", LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("123", ScrapeSource.CONTROLLER, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("456", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("789", ScrapeSource.TRADEAPLANE, LocalDate.now()));
+        fetchedListingsFromDatabase.add(new Listing("012", ScrapeSource.CONTROLLER, LocalDate.now()));
 
         fetchedListings = new FetchedListings(newListingsFromWeb, fetchedListingsFromDatabase);
         listingCalculationService = new ListingCalculationService();
@@ -145,15 +145,15 @@ public class ListingCalculationServiceTest {
 
         //Assert
         Assertions.assertEquals(uniqueNewWebListings.get(0).getSourceId(), "123");
-        Assertions.assertEquals(uniqueNewWebListings.get(0).getSource(), "TAP");
+        Assertions.assertEquals(uniqueNewWebListings.get(0).getSource(), ScrapeSource.TRADEAPLANE);
         Assertions.assertEquals(uniqueNewWebListings.get(1).getSourceId(), "789");
-        Assertions.assertEquals(uniqueNewWebListings.get(1).getSource(), "CONTROLLER");
+        Assertions.assertEquals(uniqueNewWebListings.get(1).getSource(), ScrapeSource.CONTROLLER);
         Assertions.assertEquals(uniqueNewWebListings.size(), 2);
 
         Assertions.assertEquals(databaseListingsToBeDeleted.get(0).getSourceId(), "123");
-        Assertions.assertEquals(databaseListingsToBeDeleted.get(0).getSource(), "CONTROLLER");
+        Assertions.assertEquals(databaseListingsToBeDeleted.get(0).getSource(), ScrapeSource.CONTROLLER);
         Assertions.assertEquals(databaseListingsToBeDeleted.get(1).getSourceId(), "789");
-        Assertions.assertEquals(databaseListingsToBeDeleted.get(1).getSource(), "TAP");
+        Assertions.assertEquals(databaseListingsToBeDeleted.get(1).getSource(), ScrapeSource.TRADEAPLANE);
         Assertions.assertEquals(databaseListingsToBeDeleted.size(), 2);
     }
 

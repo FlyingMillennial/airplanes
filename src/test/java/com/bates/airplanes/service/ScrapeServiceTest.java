@@ -1,12 +1,12 @@
 package com.bates.airplanes.service;
 
 import com.bates.airplanes.model.Listing;
+import com.bates.airplanes.model.ScrapeSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -22,7 +22,7 @@ public class ScrapeServiceTest {
     ScrapeService scrapeService = new ScrapeService(
         "https://www.trade-a-plane.com/search?category_level1=Single+Engine+Piston&make=PIPER&s-type=aircraft&s-page_size=96&s-sort_key=price&s-sort_order=asc",
         "data-listing_id=\"(.*?)\"",
-        "TAP"
+        ScrapeSource.TRADEAPLANE
     );
 
     @Mock
