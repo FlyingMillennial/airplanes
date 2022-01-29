@@ -39,22 +39,7 @@ public class Listing {
         return sourceId;
     }
 
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
-    }
-
     public ScrapeSource getSource() {return source;}
 
-    public void setSource(ScrapeSource source) {
-        this.source = source;
-    }
-
-    public LocalDate getDateScraped() {
-        return dateScraped;
-    }
-
-    public void setDateScraped(LocalDate dateScraped) {
-        this.dateScraped = dateScraped;
-    }
 
 }

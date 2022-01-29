@@ -17,15 +17,7 @@ public class FetchedListings {
         return newListingsFromWeb;
     }
 
-    public void setNewListingsFromWeb(List<Listing> newListingsFromWeb) {
-        this.newListingsFromWeb = newListingsFromWeb;
-    }
-
     public List<Listing> getExistingListingsFromDatabase() {
         return existingListingsFromDatabase;
-    }
-
-    public void setExistingListingsFromDatabase(List<Listing> existingListingsFromDatabase) {
-        this.existingListingsFromDatabase = existingListingsFromDatabase;
     }
 }
