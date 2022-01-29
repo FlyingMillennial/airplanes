@@ -20,14 +20,11 @@ public class ScrapeService {
 
     private String sourceUrl;
     private String sourceRegex;
+    private ScrapeSource scrapeSource;
 
     public ScrapeSource getScrapeSource() {
         return scrapeSource;
     }
-
-    private ScrapeSource scrapeSource;
-
-
 
     //Needed to keep spring happy...
     public ScrapeService() {}
@@ -39,6 +36,7 @@ public class ScrapeService {
     }
 
     public List<Listing> getWebListings() {
+        //TODO: We can probably removed this by using @InjectMocks for HttpClient
         //New up httpClient here to facilitate testing
         HttpClient httpClient = HttpClient.newHttpClient();
         return getWebListings(httpClient);
