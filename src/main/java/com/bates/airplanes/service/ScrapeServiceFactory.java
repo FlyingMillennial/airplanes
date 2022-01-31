@@ -1,10 +1,23 @@
 package com.bates.airplanes.service;
 
+import com.bates.airplanes.model.Listing;
 import com.bates.airplanes.model.ScrapeSource;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ScrapeServiceFactory {
+
+    public List<ScrapeService> getAllScrapeServices() {
+        List<ScrapeService> services = new ArrayList<>();
+        for (ScrapeSource source : ScrapeSource.values()) {
+            ScrapeService service = getScrapeService(source);
+            services.add(service);
+        }
+        return services;
+    }
 
     public ScrapeService getScrapeService(ScrapeSource source) {
 

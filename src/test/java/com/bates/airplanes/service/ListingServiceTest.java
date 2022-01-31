@@ -32,9 +32,14 @@ public class ListingServiceTest {
 
     @Test
     public void testServiceCallsCorrectOtherServices() {
+        //Arrange service list
+        ArrayList<ScrapeService> services = new ArrayList<>();
+        services.add(scrapeService);
+        services.add(scrapeService);
+
         //Arrange Mocks
         when(scrapeService.getWebListings()).thenReturn(new ArrayList<>());
-        when(scrapeServiceFactory.getScrapeService(any())).thenReturn(scrapeService);
+        when(scrapeServiceFactory.getAllScrapeServices()).thenReturn(services);
         when(listingRepository.get()).thenReturn(new ArrayList<>());
         when(listingCalculationService.calculateExpiredSavedListings(any())).thenReturn(new ArrayList<>());
         when(listingCalculationService.calculateNewWebListings(any())).thenReturn(new ArrayList<>());
@@ -43,11 +48,11 @@ public class ListingServiceTest {
         listingService.fetchActiveListings();
 
         //Assert
-        verify(scrapeServiceFactory, atLeast(1)).getScrapeService(any());
+        verify(scrapeServiceFactory, times(1)).getAllScrapeServices();
         verify(listingRepository, times(2)).get();
         verify(listingCalculationService, times(1)).calculateNewWebListings(any());
         verify(listingCalculationService, times(1)).calculateExpiredSavedListings(any());
-        verify(scrapeService, atLeast(1)).getWebListings();
+        verify(scrapeService, times(2)).getWebListings();
 
     }
 

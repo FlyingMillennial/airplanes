@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.List;
+
 public class ScrapeServiceFactoryTest {
 
     static ScrapeServiceFactory scrapeServiceFactory;
@@ -26,6 +28,15 @@ public class ScrapeServiceFactoryTest {
         Assertions.assertEquals(tradeAPlaneService.getScrapeSource(), ScrapeSource.TRADEAPLANE);
         Assertions.assertEquals(controllerService.getScrapeSource(), ScrapeSource.CONTROLLER);
         Assertions.assertEquals(barnstormersService.getScrapeSource(), ScrapeSource.BARNSTORMERS);
+    }
+
+    @Test
+    public void getAllServicesReturnsAServiceForEachSource() {
+        //Arrange/Act
+        List<ScrapeService> scrapeServices = scrapeServiceFactory.getAllScrapeServices();
+
+        //Assert
+        Assertions.assertEquals(scrapeServices.size(), ScrapeSource.values().length);
     }
 
 }

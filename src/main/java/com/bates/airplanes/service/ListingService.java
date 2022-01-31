@@ -36,9 +36,9 @@ public class ListingService {
     private FetchedListings fetchListings() {
         // Scrape listings from the web from different sources
         List<Listing> webListings = new ArrayList<>();
-        for (ScrapeSource source : ScrapeSource.values()) {
-            ScrapeService service = scrapeServiceFactory.getScrapeService(source);
-            List<Listing> webListingsFromCurrentSource = service.getWebListings();
+        List<ScrapeService> services = scrapeServiceFactory.getAllScrapeServices();
+        for (ScrapeService scrapeService : services) {
+            List<Listing> webListingsFromCurrentSource = scrapeService.getWebListings();
             webListings.addAll(webListingsFromCurrentSource);
         }
         // Fetch listings from database
